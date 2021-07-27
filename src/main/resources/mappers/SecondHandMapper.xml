@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hnnd.house.dao.SecondHandMapper">
+
+    <select id="selectByCity" parameterType="String" resultType="com.hnnd.house.entity.SecondHand">
+        select * from second_hand where city = #{value}
+    </select>
+
+    <select id="selectByFRegion" parameterType="String" resultType="com.hnnd.house.entity.SecondHand">
+        select * from second_hand where first_region = #{value}
+    </select>
+
+    <select id="selectByDistrict"  resultType="com.hnnd.house.entity.SecondHand">
+        select * from second_hand where district_name = #{value}
+    </select>
+
+    <insert id="add" parameterType="com.hnnd.house.entity.SecondHand">
+        insert into second_hand
+        (name, price, average_price, house_type, area, city, first_region,second_region,district_name,is_elevator,is_subway,subway_distance,subway_name,build_year) values
+        (#{name} , #{price} , #{averagePrice} , #{houseType} ,#{area}, #{city} , #{firstRegion}, #{secondRegion},#{districtName},#{isElevator},#{isSubway},#{subwayDistance},#{subwayName},#{buildYear})
+    </insert>
+
+    <delete id="delete" parameterType="com.hnnd.house.entity.SecondHand">
+        delete from second_hand
+        where id = #{Id}
+    </delete>
+
+    <update id="update" parameterType="com.hnnd.house.entity.SecondHand">
+        update second_hand
+        set name = #{name} ,price = #{price} , average_price = #{averagePrice}, house_type = #{houseType}, area = #{area},city = #{city},first_region = #{firstRegion},
+        second_region = #{secondRegion},district_name = #{districtName},is_elevator = #{isElevator},is_subway = #{isSubway},subway_distance = #{subwayDistance},subway_name = #{subwayName},
+        build_year = #{buildYear}
+        where id = #{Id}
+    </update>
+
+</mapper>

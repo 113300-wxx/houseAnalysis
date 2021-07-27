@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hnnd.house.dao.NewHouseMapper">
+
+    <select id="selectByCity" parameterType="String" resultType="com.hnnd.house.entity.NewHouse">
+        select * from new_house where city = #{value}
+    </select>
+
+    <select id="selectByFRegion" parameterType="String" resultType="com.hnnd.house.entity.NewHouse">
+        select * from new_house where first_region = #{value}
+    </select>
+
+    <select id="selectByDistrict"  parameterType="String" resultType="com.hnnd.house.entity.NewHouse">
+        select * from new_house where district_name = #{value}
+    </select>
+
+    <insert id="add" parameterType="com.hnnd.house.entity.NewHouse">
+        insert into new_house
+        ( average_price, house_type, city, first_region,second_region,district_name,is_elevator,is_subway,max_area,min_area, subway_distance,subway_name) values
+        ( #{averagePrice}  , #{houseType} , #{city} , #{firstRegion}, #{secondRegion},#{districtName},#{isElevator},#{isSubway}, #{maxArea},#{minArea}, #{subwayDistance},#{subwayName})
+    </insert>
+
+    <delete id="delete" parameterType="com.hnnd.house.entity.NewHouse">
+        delete from new_house
+        where id = #{Id}
+    </delete>
+
+    <update id="update" parameterType="com.hnnd.house.entity.NewHouse">
+        update new_house
+        set average_price = #{averagePrice} ,house_type = #{houseType} , max_area = #{maxArea},min_area = #{minArea},city = #{city},first_region = #{firstRegion},
+        second_region = #{secondRegion},district_name = #{districtName},is_elevator = #{isElevator},is_subway = #{isSubway},subway_distance = #{subwayDistance},subway_name = #{subwayName}
+        where id = #{Id}
+    </update>
+
+</mapper>

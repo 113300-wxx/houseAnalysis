@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hnnd.house.dao.RentHouseMapper">
+
+    <select id="selectByCity" parameterType="String" resultType="com.hnnd.house.entity.RentHouse">
+        select * from rent_house where city = #{value}
+    </select>
+
+    <select id="selectByFRegion" parameterType="String" resultType="com.hnnd.house.entity.RentHouse">
+        select * from rent_house where first_region = #{value}
+    </select>
+
+    <select id="selectByDistrict"  parameterType="String" resultType="com.hnnd.house.entity.RentHouse">
+        select * from rent_house where district_name = #{value}
+    </select>
+
+    <insert id="add" parameterType="com.hnnd.house.entity.RentHouse">
+        insert into rent_house
+        (name, price, house_type, area, city, first_region,second_region,district_name,is_elevator,is_subway,is_kitchen,subway_distance,subway_name) values
+        (#{name} , #{price}  , #{houseType} ,#{area}, #{city} , #{firstRegion}, #{secondRegion},#{districtName},#{isElevator},#{isSubway},#{isKitchen},#{subwayDistance},#{subwayName})
+    </insert>
+
+    <delete id="delete" parameterType="com.hnnd.house.entity.RentHouse">
+        delete from rent_house
+        where id = #{Id}
+    </delete>
+
+    <update id="update" parameterType="com.hnnd.house.entity.RentHouse">
+        update rent_house
+        set name = #{name} ,price = #{price} , house_type = #{houseType}, area = #{area},city = #{city},first_region = #{firstRegion},
+        second_region = #{secondRegion},district_name = #{districtName},is_elevator = #{isElevator},is_subway = #{isSubway},is_kitchen = #{isKitchen},subway_distance = #{subwayDistance},subway_name = #{subwayName}
+        where id = #{Id}
+    </update>
+
+</mapper>
